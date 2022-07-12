@@ -11,5 +11,15 @@ export const color = {
   white: 'rgba(255, 255, 255, 1)',
   whiteOp9: 'rgba(255, 255, 255, .9)',
   whiteOp8: 'rgba(255, 255, 255, .8)',
-  whiteOp7: 'rgba(255, 255, 255, .7)'
+  whiteOp7: 'rgba(255, 255, 255, .7)',
+
+  //snapter
+  grayPurple: 'rgb(38, 54, 77)',
+  lightPink: `#ffb6c1`,
+  pink: '#ffc0cb',
+  plum: '#dda0dd',
+  dodgerBlue: '#1e90ff',
+  mediumslateblue: '#7b68ee',
+  
+
 }

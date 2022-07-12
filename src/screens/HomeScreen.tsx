@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { commonStyles } from '../styles/commonStyles'
+import FeedCard from '../components/homescreen/FeedCard'
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text style={commonStyles.defaultContainer}>HomeScreen</Text>
+    <View style={{flex: 1}}>
+      <ScrollView>
+        <FeedCard />
+        <FeedCard />
+        <FeedCard />
+      </ScrollView>
     </View>
   )
 }

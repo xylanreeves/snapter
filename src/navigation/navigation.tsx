@@ -13,8 +13,10 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 
-const Tab = createBottomTabNavigator()
-const Stack = createNativeStackNavigator()
+const BottomTab = createBottomTabNavigator()
+const TabOneStack = createNativeStackNavigator()
+const TabTwoStack = createNativeStackNavigator()
+const TabThreeStack = createNativeStackNavigator()
 
 // let customFonts = {
 //   'Splash-Regular': require('../assets/fonts/Splash-Regular.ttf'),
@@ -65,30 +67,34 @@ const RootNavigator = () => {
     headerShown: false,
   }
 
-  const ProfileStack = () => {
-    return (
-      <Stack.Navigator screenOptions={commonScreenOptions}>
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-      </Stack.Navigator>
-    )
-  }
-
   const HomeStack = () => {
     return (
-      <Stack.Navigator screenOptions={commonScreenOptions}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <TabOneStack.Navigator screenOptions={commonScreenOptions}>
+        <TabOneStack.Screen name="Home" component={HomeScreen} />
+      </TabOneStack.Navigator>
     )
   }
 
+  
   const AddPostStack = () => {
     return (
-      <Stack.Navigator screenOptions={commonScreenOptions}>
-        <Stack.Screen name="AddPost" component={AddPostScreen} />
-      </Stack.Navigator>
+      <TabTwoStack.Navigator screenOptions={commonScreenOptions}>
+        <TabTwoStack.Screen name="AddPost" component={AddPostScreen} />
+      </TabTwoStack.Navigator>
     )
   }
+
+
+  const ProfileStack = () => {
+    return (
+      <TabThreeStack.Navigator screenOptions={commonScreenOptions}>
+        <TabThreeStack.Screen name="Profile" component={ProfileScreen} />
+        <TabThreeStack.Screen name="Settings" component={SettingsScreen} />
+      </TabThreeStack.Navigator>
+    )
+  }
+
+  
 
   // const MockComponent = () => (
   //   <View style={{ flex: 1, backgroundColor: 'white' }} />
@@ -129,7 +135,7 @@ const RootNavigator = () => {
   else authStack */
 
   return (
-    <Tab.Navigator
+    <BottomTab.Navigator
       initialRouteName="AddPostTab"
       screenOptions={{
         tabBarActiveTintColor: 'plum',
@@ -151,7 +157,7 @@ const RootNavigator = () => {
         headerTitleAlign: 'left',
       }}
     >
-      <Tab.Screen
+      <BottomTab.Screen
         name="Hometab"
         component={HomeStack}
         options={{
@@ -161,7 +167,7 @@ const RootNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      <BottomTab.Screen
         name="AddPostTab"
         component={AddPostStack}
         options={({ route }) => ({
@@ -176,7 +182,7 @@ const RootNavigator = () => {
           },
         })}
       />
-      <Tab.Screen
+      <BottomTab.Screen
         name="ProfileTab"
         component={ProfileStack}
         options={{
@@ -186,7 +192,7 @@ const RootNavigator = () => {
           ),
         }}
       />
-    </Tab.Navigator>
+    </BottomTab.Navigator>
   )
 }
 

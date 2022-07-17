@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3snapterstorage284dc946",
+  "bucketName": "snapter-storage-284dc946",
+  "policyUUID": "637a0c6d",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

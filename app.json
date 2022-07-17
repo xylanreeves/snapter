@@ -3,6 +3,7 @@
     "name": "snapter",
     "slug": "snapter",
     "version": "1.0.0",
+    "scheme": "snapter",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-snapter-dev-15215-authRole",
+      "UnauthRoleArn": "arn:aws:iam::237172308122:role/amplify-snapter-dev-15215-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::237172308122:role/amplify-snapter-dev-15215-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-snapter-dev-15215-deployment",
+      "UnauthRoleName": "amplify-snapter-dev-15215-unauthRole",
+      "StackName": "amplify-snapter-dev-15215",
+      "StackId": "arn:aws:cloudformation:us-east-1:237172308122:stack/amplify-snapter-dev-15215/aa351160-03b2-11ed-a021-12608cfa8899",
+      "AmplifyAppId": "d1hqqoad23r6ro"
+    },
+    "categories": {
+      "auth": {
+        "snapter": {}
+      }
+    }
+  }
+}

@@ -102,9 +102,10 @@ const FeedCard = () => {
                   color: color.lightGray,
                 }}
               >
-                kristen
+                Kristen
               </Text>
             </View>
+
             <View style={{ paddingHorizontal: 4 }}>
               <Text>•</Text>
             </View>

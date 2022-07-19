@@ -31,47 +31,28 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Author": {
-                    "name": "Author",
+                "author_id": {
+                    "name": "author_id",
                     "isArray": false,
-                    "type": {
-                        "model": "User"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "postAuthorId"
-                    }
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 },
-                "Screenshotters": {
-                    "name": "Screenshotters",
+                "likers": {
+                    "name": "likers",
                     "isArray": true,
-                    "type": {
-                        "model": "User"
-                    },
-                    "isRequired": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "postID"
-                    }
+                    "isArrayNullable": true
                 },
-                "Likers": {
-                    "name": "Likers",
+                "screenshotters": {
+                    "name": "screenshotters",
                     "isArray": true,
-                    "type": {
-                        "model": "User"
-                    },
-                    "isRequired": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "postID"
-                    }
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -88,13 +69,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "postAuthorId": {
-                    "name": "postAuthorId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -143,7 +117,7 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "followers": {
@@ -166,13 +140,20 @@ export const schema = {
                     "name": "total_likes",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
-                "postID": {
-                    "name": "postID",
+                "total_screenshots": {
+                    "name": "total_screenshots",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "posts_liked": {
+                    "name": "posts_liked",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -201,15 +182,6 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPost",
-                        "fields": [
-                            "postID"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -230,5 +202,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "f16f02ad3082e8d010d63d0da7367de9"
+    "version": "6b8781a969a249c67f6601cc54b42d25"
 };

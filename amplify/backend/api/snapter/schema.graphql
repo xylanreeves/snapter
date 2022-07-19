@@ -3,17 +3,19 @@ type Post @model @auth(rules: [{allow: public}]) {
   content: String!
   timestamp: AWSTimestamp!
   duration: AWSTime!
-  Author: User @hasOne
-  Screenshotters: [User] @hasMany(indexName: "byPost", fields: ["id"])
-  Likers: [User] @hasMany(indexName: "byPost", fields: ["id"])
+  author_id: ID!
+  likers: [ID!]
+  screenshotters: [ID!]
 }
 
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String!
-  email: String
+  email: String!
   followers: [ID!]
   following: [ID!]
-  total_likes: Int
-  postID: ID! @index(name: "byPost")
+  total_likes: Int!
+  total_screenshots: Int!
+  posts_liked: Int!
 }
+ 

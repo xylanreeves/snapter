@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "scheme": "snapter",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_snapter/res/mipmap-xxxhdpi/icon_snapter.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo-snapter-small.png",

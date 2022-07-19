@@ -12,6 +12,9 @@ import { color } from '../styles/colors'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
+import { Auth, DataStore } from 'aws-amplify'
+import { getUser } from '../awsUtils/AwsUtils'
+import { User } from '../models'
 
 const BottomTab = createBottomTabNavigator()
 const TabOneStack = createNativeStackNavigator()
@@ -23,45 +26,61 @@ const TabThreeStack = createNativeStackNavigator()
 // }
 
 const RootNavigator = () => {
-  // // //
-  // const [appIsReady, setAppIsReady] = useState(false)
+  useEffect(() => {
+    //if new user -> add to db.
+    addUserToDB()
+  }, [])
 
-  // useEffect(() => {
-  //   async function prepare() {
-  //     try {
-  //       // Keep the splash screen visible while we fetch resources
-  //       await SplashScreen.preventAutoHideAsync()
-  //       // Pre-load fonts, make any API calls you need to do here
-  //       await Font.loadAsync(customFonts)
+  const addUserToDB = async () => {
+    //this gets the info of current loggedIn user
+    const currentUserData = await getUser()
+    console.log(
+      'userData cognito: ',
+      JSON.stringify(currentUserData.attributes, null, 5),
+    )
+    ///
+    //let's see if there's a user with same mail on db
 
-  //       // // Artificially delay for two seconds to simulate a slow loading
-  //       // // experience. Please remove this if you copy and paste the code!
-  //       // await new Promise(resolve => setTimeout(resolve, 2000));
-  //     } catch (e) {
-  //       console.warn(e)
-  //     } finally {
-  //       // Tell the application to render
-  //       setAppIsReady(true)
-  //     }
-  //   }
+    try {
+      var mUser = await DataStore.query(User, (u) =>
+        u.email('eq', currentUserData.attributes.email),
+      )
+      /* same thing, different style */
+      // var mUser = (await DataStore.query(User)).filter(
+      //   (u) => u.email === currentUserData.attributes.email,
+      // )
 
-  //   prepare()
-  // }, [])
+      console.log('User in DB: ', mUser[0].id)
 
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (appIsReady) {
-  //     // This tells the splash screen to hide immediately! If we call this after
-  //     // `setAppIsReady`, then we may see a blank screen while the app is
-  //     // loading its initial state and rendering its first pixels. So instead,
-  //     // we hide the splash screen once we know the root view has already
-  //     // performed layout.
-  //     await SplashScreen.hideAsync()
-  //   }
-  // }, [appIsReady])
+      console.log('timestamp NOW: ',  new Date())
 
-  // if (!appIsReady) {
-  //   return null
-  // }
+      console.log('timestamp seconds: ',  Math.floor(new Date().getTime() / 1000))
+      console.log('timestamp milliseconds: ', new Date( Math.floor(new Date().getTime() / 1000) * 1000))      
+    } catch (error) {
+      console.log('Error retrieving user', error)
+    }
+
+    if (mUser.length === 0) {
+      try {
+        await DataStore.save(
+          new User({
+            username: currentUserData.attributes.name ?? '',
+            email: currentUserData.attributes.email,
+            followers: [],
+            following: [],
+            total_likes: 0,
+            total_screenshots: 0,
+            posts_liked: 0,
+          }),
+        )
+        console.log('Post saved successfully!')
+      } catch (error) {
+        console.log('Error saving post', error)
+      }
+
+      /* addUserToDB fn ends here  */
+    }
+  }
 
   const commonScreenOptions = {
     headerShown: false,
@@ -75,7 +94,6 @@ const RootNavigator = () => {
     )
   }
 
-  
   const AddPostStack = () => {
     return (
       <TabTwoStack.Navigator screenOptions={commonScreenOptions}>
@@ -83,7 +101,6 @@ const RootNavigator = () => {
       </TabTwoStack.Navigator>
     )
   }
-
 
   const ProfileStack = () => {
     return (
@@ -93,43 +110,6 @@ const RootNavigator = () => {
       </TabThreeStack.Navigator>
     )
   }
-
-  
-
-  // const MockComponent = () => (
-  //   <View style={{ flex: 1, backgroundColor: 'white' }} />
-  // )
-
-  // const getHeaderTitle = (route) => {
-  //   // If the focused route is not found, we need to assume it's the initial screen
-  //   // This can happen during if there hasn't been any navigation inside the screen
-  //   // In our case, it's "Feed" as that's the first screen inside the navigator
-  //   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home'
-
-  //   switch (routeName) {
-  //     case 'Home':
-  //       return 'Home'
-  //     case 'Profile':
-  //       return 'My profile'
-  //     case 'Settings':
-  //       return 'Settings'
-  //   }
-  // }
-
-  // const getTabBarVisibility = (route) => {
-  //   // If the focused route is not found, we need to assume it's the initial screen
-  //   // This can happen during if there hasn't been any navigation inside the screen
-  //   // In our case, it's "Feed" as that's the first screen inside the navigator
-
-  //   console.log(route)
-  //   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home'
-  //   console.log(routeName)
-
-  //   if (routeName == 'AddPost') {
-  //     return 'none'
-  //   }
-  //   return 'flex'
-  // }
 
   /* if userTokenAvailable -> move to appStack
   else authStack */
@@ -199,3 +179,40 @@ const RootNavigator = () => {
 export default RootNavigator
 
 const styles = StyleSheet.create({})
+
+/* some might-use later stuff below */
+
+// const MockComponent = () => (
+//   <View style={{ flex: 1, backgroundColor: 'white' }} />
+// )
+
+// const getHeaderTitle = (route) => {
+//   // If the focused route is not found, we need to assume it's the initial screen
+//   // This can happen during if there hasn't been any navigation inside the screen
+//   // In our case, it's "Feed" as that's the first screen inside the navigator
+//   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home'
+
+//   switch (routeName) {
+//     case 'Home':
+//       return 'Home'
+//     case 'Profile':
+//       return 'My profile'
+//     case 'Settings':
+//       return 'Settings'
+//   }
+// }
+
+// const getTabBarVisibility = (route) => {
+//   // If the focused route is not found, we need to assume it's the initial screen
+//   // This can happen during if there hasn't been any navigation inside the screen
+//   // In our case, it's "Feed" as that's the first screen inside the navigator
+
+//   console.log(route)
+//   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home'
+//   console.log(routeName)
+
+//   if (routeName == 'AddPost') {
+//     return 'none'
+//   }
+//   return 'flex'
+// }

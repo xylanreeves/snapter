@@ -17,12 +17,11 @@ export declare class Post {
   readonly content: string;
   readonly timestamp: number;
   readonly duration: string;
-  readonly Author?: User | null;
-  readonly Screenshotters?: (User | null)[] | null;
-  readonly Likers?: (User | null)[] | null;
+  readonly author_id: string;
+  readonly likers?: string[] | null;
+  readonly screenshotters?: string[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly postAuthorId?: string | null;
   constructor(init: ModelInit<Post, PostMetaData>);
   static copyOf(source: Post, mutator: (draft: MutableModel<Post, PostMetaData>) => MutableModel<Post, PostMetaData> | void): Post;
 }
@@ -30,11 +29,12 @@ export declare class Post {
 export declare class User {
   readonly id: string;
   readonly username: string;
-  readonly email?: string | null;
+  readonly email: string;
   readonly followers?: string[] | null;
   readonly following?: string[] | null;
-  readonly total_likes?: number | null;
-  readonly postID: string;
+  readonly total_likes: number;
+  readonly total_screenshots: number;
+  readonly posts_liked: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);

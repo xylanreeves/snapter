@@ -109,6 +109,9 @@ const App = () => {
     return null
   }
 
+  // if the user is logged in -> goes to navigation, home basically
+  //else to login screen 
+  //aws amplify authentication - federatedSignIn
   return (
     <NavigationContainer onReady={onLayoutRootView}>
       {/* {user ? <RootNavigator /> : <LoginPage user={user} />} */}

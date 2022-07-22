@@ -20,6 +20,7 @@ export declare class Post {
   readonly author_id: string;
   readonly likers?: string[] | null;
   readonly screenshotters?: string[] | null;
+  readonly expirationTime: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Post, PostMetaData>);

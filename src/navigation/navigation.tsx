@@ -116,7 +116,7 @@ const RootNavigator = () => {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="HOme"
+      initialRouteName="AddPostTab"
       screenOptions={{
         tabBarActiveTintColor: 'plum',
         tabBarInactiveTintColor: 'lightgray',

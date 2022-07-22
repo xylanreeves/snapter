@@ -6,6 +6,7 @@ type Post @model @auth(rules: [{allow: public}]) {
   author_id: ID!
   likers: [ID!]
   screenshotters: [ID!]
+  expirationTime: AWSTimestamp!
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -17,5 +18,4 @@ type User @model @auth(rules: [{allow: public}]) {
   total_likes: Int!
   total_screenshots: Int!
   posts_liked: Int!
-}
- 
+} 

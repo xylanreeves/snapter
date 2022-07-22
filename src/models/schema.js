@@ -54,6 +54,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "expirationTime": {
+                    "name": "expirationTime",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -202,5 +209,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "6b8781a969a249c67f6601cc54b42d25"
+    "version": "5ccd64b78011fd60b7b14390d501974a"
 };

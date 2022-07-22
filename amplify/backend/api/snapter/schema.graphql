@@ -2,7 +2,6 @@ type Post @model @auth(rules: [{allow: public}]) {
   id: ID!
   content: String!
   timestamp: AWSTimestamp!
-  duration: AWSTime!
   author_id: ID!
   likers: [ID!]
   screenshotters: [ID!]
@@ -18,4 +17,5 @@ type User @model @auth(rules: [{allow: public}]) {
   total_likes: Int!
   total_screenshots: Int!
   posts_liked: Int!
-} 
+}
+ 

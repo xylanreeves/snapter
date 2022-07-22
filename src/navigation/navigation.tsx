@@ -138,7 +138,7 @@ const RootNavigator = () => {
       }}
     >
       <BottomTab.Screen
-        name="Hometab"
+        name="HomeTab"
         component={HomeStack}
         options={{
           tabBarLabel: 'Home',

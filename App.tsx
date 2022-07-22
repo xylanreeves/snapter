@@ -10,6 +10,7 @@ import * as Linking from 'expo-linking'
 import awsconfig from './src/aws-exports'
 import * as WebBrowser from 'expo-web-browser'
 import LoginScreen from './src/screens/LoginScreen'
+import { RootSiblingParent } from 'react-native-root-siblings'
 
 Amplify.configure(awsconfig)
 
@@ -110,14 +111,16 @@ const App = () => {
   }
 
   // if the user is logged in -> goes to navigation, home basically
-  //else to login screen 
+  //else to login screen
   //aws amplify authentication - federatedSignIn
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      {/* {user ? <RootNavigator /> : <LoginPage user={user} />} */}
-      {/* <LoginScreen /> */}
-      <RootNavigator />
-    </NavigationContainer>
+    <RootSiblingParent>
+      <NavigationContainer onReady={onLayoutRootView}>
+        {/* {user ? <RootNavigator /> : <LoginPage user={user} />} */}
+        {/* <LoginScreen /> */}
+        <RootNavigator />
+      </NavigationContainer>
+    </RootSiblingParent>
   )
 }
 

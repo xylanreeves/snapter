@@ -11,10 +11,10 @@ import React, { useEffect, useState } from 'react'
 import { commonStyles } from '../styles/commonStyles'
 import FeedCard from '../components/homescreen/FeedCard'
 import { Auth } from 'aws-amplify'
+import Toast from 'react-native-root-toast'
 
-const HomeScreen = () => {
- 
-
+const HomeScreen = ({ route, navigation }) => {
+  // const { uploadMessage } = route.params
   // const [result, setResult] = useState(null)
 
   // const _handlePressButtonAsync = async () => {
@@ -25,14 +25,18 @@ const HomeScreen = () => {
   const [user, setUser] = useState(null)
 
   // useEffect(() => {
+  //   if (uploadMessage) {
+  //     let toast = Toast.show(uploadMessage, {
+  //       duration: Toast.durations.SHORT,
+  //     })
+  //   }
+  // }, [uploadMessage])
+
+  // useEffect(() => {
   //   getUser().then((userData) => setUser(userData))
 
-   
   // }, [])
 
-
-  
-  
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
@@ -41,7 +45,7 @@ const HomeScreen = () => {
         </View> */}
 
         {/* {user && <Button title="Sign Out" onPress={() => Auth.signOut()} />} */}
-       
+
         {/* <TouchableOpacity
           style={{ padding: 32 }}
           onPress={_handlePressButtonAsync}

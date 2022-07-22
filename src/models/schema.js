@@ -24,13 +24,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "duration": {
-                    "name": "duration",
-                    "isArray": false,
-                    "type": "AWSTime",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "author_id": {
                     "name": "author_id",
                     "isArray": false,
@@ -209,5 +202,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "5ccd64b78011fd60b7b14390d501974a"
+    "version": "ed69df45c44c69946e13124d4ef71a65"
 };

@@ -17,6 +17,7 @@ import { DataStore } from 'aws-amplify'
 import { Post, User } from '../models'
 import { getUser } from '../awsUtils/AwsUtils'
 import { color } from '../styles/colors'
+import Toast from 'react-native-root-toast'
 
 const AddPostScreen = ({ navigation }) => {
   //Expiration times in seconds
@@ -68,14 +69,16 @@ const AddPostScreen = ({ navigation }) => {
     }
 
     /* NOTES */
-    // - saving timestamp in seconds
+    // - remember we're saving timestamp in seconds
+    //- coz amazon only supports timestamp in seconds for now
+    // - so when we'll fetch the data we have be cautious about 'seconds' and 'milliseconds'
+    //- new Date() fn supports milliseconds
 
     try {
       await DataStore.save(
         new Post({
           content: _value,
           timestamp: Math.floor(new Date().getTime() / 1000),
-          duration: '',
           author_id: mUser[0].id,
           likers: [],
           screenshotters: [],
@@ -85,10 +88,20 @@ const AddPostScreen = ({ navigation }) => {
       )
       setIsUploading(false)
       setUploadSuccessful(true)
+      Toast.show('Post sent successfully!', {
+        duration: Toast.durations.SHORT,
+        position: 32
+      })
+      navigation.navigate('HomeTab')
     } catch (error) {
       setIsUploading(false)
       setUploadError(true)
       console.error('Post Upload Error: ', error)
+      Toast.show('Failed: Please try again.', {
+        duration: Toast.durations.SHORT,
+        position: 32,
+      })
+      navigation.navigate('HomeTab')
     }
 
     //if the upload is successful
@@ -98,7 +111,12 @@ const AddPostScreen = ({ navigation }) => {
   return (
     <Formik
       initialValues={{ postContent: '' }}
-      onSubmit={(values) => console.warn(values)}
+      onSubmit={(values) => {
+        // console.log('values: ', values)
+        // console.log('NOW: ', new Date(Math.floor(new Date().getTime())))
+        // console.log('Expiration Time: ', new Date(Math.floor(new Date().getTime()) + postExpirationTime * 1000))
+        addToAws(values.postContent)
+      }}
     >
       {({
         handleChange,
@@ -157,10 +175,7 @@ const AddPostScreen = ({ navigation }) => {
                     backgroundColor: 'plum',
                     paddingVertical: 8,
                     paddingHorizontal: 16,
-                    opacity:
-                      values.postContent == ''
-                        ? 0.3
-                        : 1,
+                    opacity: values.postContent == '' ? 0.3 : 1,
                   }}
                   disabled={values.postContent == ''}
                 >

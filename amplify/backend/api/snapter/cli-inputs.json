@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "snapter",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-1b9c24b0-1e17-4d88-b654-fe6ed22fe377/amplify/backend/api/snapter/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-efaf4b3d-823e-46d6-b169-c710db5f3e75/amplify/backend/api/snapter/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

@@ -16,7 +16,6 @@ export declare class Post {
   readonly id: string;
   readonly content: string;
   readonly timestamp: number;
-  readonly duration: string;
   readonly author_id: string;
   readonly likers?: string[] | null;
   readonly screenshotters?: string[] | null;

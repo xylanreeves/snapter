@@ -20,6 +20,7 @@ export declare class Post {
   readonly likers?: string[] | null;
   readonly screenshotters?: string[] | null;
   readonly expirationTime: number;
+  readonly authorName?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Post, PostMetaData>);
@@ -35,6 +36,7 @@ export declare class User {
   readonly total_likes: number;
   readonly total_screenshots: number;
   readonly posts_liked: number;
+  readonly userProfilePicture?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);

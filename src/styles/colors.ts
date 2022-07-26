@@ -6,7 +6,6 @@ export const color = {
   lightGrayBorder: 'rgba(107,114,128, 0.6)',
   fontGray: 'rgb(156,163,175)',
 
-
   //shades of white
   white: 'rgba(255, 255, 255, 1)',
   whiteOp9: 'rgba(255, 255, 255, .9)',
@@ -20,6 +19,5 @@ export const color = {
   plum: '#dda0dd',
   dodgerBlue: '#1e90ff',
   mediumslateblue: '#7b68ee',
-  
-
+  basicWhite: 'rgb(251, 251, 251)',
 }

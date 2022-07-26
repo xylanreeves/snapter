@@ -5,7 +5,24 @@ import { color } from '../../styles/colors'
 
 const windowWidth = Dimensions.get('window').width
 
-const FeedCard = () => {
+export interface FeedCardProps {
+  authorName: string
+  content: string
+  timestamp: any
+  likes: number
+  screenshots?: number
+  expirationTime: any
+}
+
+const FeedCard = ({
+  authorName,
+  content,
+  expirationTime,
+  likes,
+  timestamp,
+  screenshots,
+}: FeedCardProps) => {
+
   const headerHeight = useHeaderHeight()
 
   return (
@@ -18,8 +35,8 @@ const FeedCard = () => {
         // marginTop: headerHeight,
         // backgroundColor: 'lightgreen',
         backgroundColor: 'white',
-        borderTopColor: color.lightGrayBorder,
-        borderTopWidth: 0.2,
+        // borderTopColor: color.lightGrayBorder,
+        // borderTopWidth: 0.16,
         // flexDirection: 'column'
       }}
     >
@@ -63,7 +80,7 @@ const FeedCard = () => {
         <View
           style={{
             // backgroundColor: 'pink',
-            paddingLeft: 8,
+            paddingLeft: 16,
             paddingRight: 8,
             paddingBottom: 8,
             paddingTop: 8,
@@ -102,7 +119,7 @@ const FeedCard = () => {
                   color: color.lightGray,
                 }}
               >
-                Kristen
+                {authorName}
               </Text>
             </View>
 
@@ -126,7 +143,7 @@ const FeedCard = () => {
                   //   textAlign: 'right'
                 }}
               >
-                2hrs ago
+                {timestamp}
               </Text>
             </View>
           </View>
@@ -144,20 +161,7 @@ const FeedCard = () => {
                 fontSize: 16,
               }}
             >
-              This is post body. This is post body. This is post body. This is
-              post body. This is post body. This is post body. This is post
-              body. This is post body. This is post body. This is post body.
-              This is post body. This is post body. This is post body. This is
-              post body. This is post body. This is post body. This is post
-              body. This is post body. This is post body. This is post body.
-              This is post body. This is post body. This is post body. This is
-              post body. This is post body. This is post body. This is post
-              body. This is post body. Naruto. Naruto. Naruto. Naruto. Naruto.
-              Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto.
-              Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto.
-              Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto.
-              Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto. Naruto.
-              Naruto. Naruto.
+              {content}
             </Text>
           </View>
         </View>

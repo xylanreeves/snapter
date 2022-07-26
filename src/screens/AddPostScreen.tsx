@@ -18,6 +18,7 @@ import { Post, User } from '../models'
 import { getUser } from '../awsUtils/AwsUtils'
 import { color } from '../styles/colors'
 import Toast from 'react-native-root-toast'
+import { getCurrentTimeInSeconds } from '../Utils/TimeUtils'
 
 const AddPostScreen = ({ navigation }) => {
   //Expiration times in seconds
@@ -80,11 +81,13 @@ const AddPostScreen = ({ navigation }) => {
           content: _value,
           timestamp: Math.floor(new Date().getTime() / 1000),
           author_id: mUser[0].id,
+          authorName: mUser[0].username,
           likers: [],
           screenshotters: [],
           expirationTime:
-            Math.floor(new Date().getTime() / 1000) + postExpirationTime,
+          getCurrentTimeInSeconds() + postExpirationTime,
         }),
+        
       )
       setIsUploading(false)
       setUploadSuccessful(true)
@@ -92,6 +95,7 @@ const AddPostScreen = ({ navigation }) => {
         duration: Toast.durations.SHORT,
         position: 32
       })
+      textViewRef?.current?.clear()
       navigation.navigate('HomeTab')
     } catch (error) {
       setIsUploading(false)
@@ -101,7 +105,7 @@ const AddPostScreen = ({ navigation }) => {
         duration: Toast.durations.SHORT,
         position: 32,
       })
-      navigation.navigate('HomeTab')
+      // navigation.navigate('HomeTab')
     }
 
     //if the upload is successful

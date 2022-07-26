@@ -15,6 +15,7 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 import { Auth, DataStore } from 'aws-amplify'
 import { getUser } from '../awsUtils/AwsUtils'
 import { User } from '../models'
+import { getCurrentTimeInSeconds } from '../Utils/TimeUtils'
 
 const BottomTab = createBottomTabNavigator()
 const TabOneStack = createNativeStackNavigator()
@@ -45,17 +46,16 @@ const RootNavigator = () => {
       var mUser = await DataStore.query(User, (u) =>
         u.email('eq', currentUserData.attributes.email),
       )
+
+
       /* same thing, different style */
       // var mUser = (await DataStore.query(User)).filter(
       //   (u) => u.email === currentUserData.attributes.email,
       // )
 
-      console.log('User in DB: ', mUser[0].id)
+      console.log('User in DB: ', mUser[0])
 
-      console.log('timestamp NOW: ',  new Date())
-
-      console.log('timestamp seconds: ',  Math.floor(new Date().getTime() / 1000))
-      console.log('timestamp milliseconds: ', new Date( Math.floor(new Date().getTime() / 1000) * 1000))      
+     
     } catch (error) {
       console.log('Error retrieving user', error)
     }
@@ -116,7 +116,7 @@ const RootNavigator = () => {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="AddPostTab"
+      initialRouteName="ProfileTab"
       screenOptions={{
         tabBarActiveTintColor: 'plum',
         tabBarInactiveTintColor: 'lightgray',

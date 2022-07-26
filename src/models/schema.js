@@ -54,6 +54,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "authorName": {
+                    "name": "authorName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -157,6 +164,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "userProfilePicture": {
+                    "name": "userProfilePicture",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -202,5 +216,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "ed69df45c44c69946e13124d4ef71a65"
+    "version": "56e72e954c0997a3f45331709f71b6e3"
 };
